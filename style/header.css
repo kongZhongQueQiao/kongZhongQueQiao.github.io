@@ -1,0 +1,83 @@
+.row-flex {
+    /* 使用Flexbox布局 */
+    display: flex;
+    /* 子元素居中 */
+    justify-content: center;
+    align-items: center;
+}
+
+.col-flex {
+    /* 使用Flexbox布局 */
+    display: flex;
+    /* 子元素居中 */
+    justify-content: center;
+    align-items: center;
+    /* 子元素垂直排列 */
+    flex-direction: column;
+}
+
+/* 设置鼠标悬停样式 */
+#aboutUS:hover {
+    cursor: pointer;
+}
+
+/* 页面头部，定义.navigator类的样式 */
+.navigator {
+    /* 背景图 */
+    background: linear-gradient(90deg, #eef9f7 0%, #f6ecec 100%);
+
+    /* 定义.navigator类内部的div元素的样式 */
+    div {
+        /* 设置div外边距，撑开父元素高度 */
+        margin: 30px 0;
+        /* 第一个子div的样式 */
+        &:first-child {
+            width: 118px;
+            height: 29px;
+            background: url(../assets/1.png) no-repeat center;
+        }
+
+        /* 第二个子div的样式 */
+        &:nth-child(2) {
+            padding: 0 var(--nav-btw-to-div-margin);
+            font-size: var(--nav-innerDiv-fontSize);
+            font-weight: var(--nav-innerDiv-fontWeight);
+        }
+
+        /* 第三个子div的样式 */
+        &:nth-child(3) {
+            font-size: var(--nav-innerDiv-fontSize);
+            font-weight: var(--nav-innerDiv-fontWeight);
+            padding-right: 302px;
+            color: red;
+        }
+
+        &:last-child {
+            /* flex: 1; */
+
+            form {
+                display: flex;
+                border: 2px solid red;
+                border-radius: 6px;
+            }
+
+            form > input {
+                height: 40px;
+            }
+
+            input[type="text"] {
+                border-radius: 6px;
+                width: 313px;
+                padding-left: 20px;
+            }
+
+            input[type="submit"] {
+                background-color: red;
+                width: 102px;
+                color: white;
+                font-size: 18px;
+                font-weight: var(--nav-innerDiv-fontWeight);
+            }
+        }
+    }
+}

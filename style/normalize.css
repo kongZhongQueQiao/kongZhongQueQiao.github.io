@@ -1,0 +1,44 @@
+/* 重置所有元素的默认边距和填充，并设置盒模型为border-box，移除所有元素的边框 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    list-style: none;
+    /* 默认字体 */
+    font-family: Microsoft YaHei;
+    /* 清除input默认样式 直接使用outline: none;或在:focus中添加以下代码 */
+    outline: none;
+}
+
+/* 定义根元素的CSS变量，这些变量可以在整个样式表中使用 */
+:root {
+    /* header区 */
+    --nav-btw-to-div-margin: 59px;
+    --nav-innerDiv-fontSize: 14px;
+    --nav-innerDiv-fontWeight: 700;
+    /* 导航区 */
+    --main-font-weight: 400;
+    --main-font-size: 14px;
+}
+
+.row-flex {
+    /* 使用Flexbox布局 */
+    display: flex;
+    /* 子元素居中 */
+    justify-content: center;
+    align-items: center;
+}
+
+.col-flex {
+    /* 使用Flexbox布局 */
+    display: flex;
+    /* 子元素居中 */
+    justify-content: center;
+    align-items: center;
+    /* 子元素垂直排列 */
+    flex-direction: column;
+}
+
+
+
