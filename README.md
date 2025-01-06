@@ -60,3 +60,15 @@
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
+
+
+
+#### 使用`github` Actions功能发布网页流程
+
+1. 使用`git`创建初始仓库，**仓库名为`用户名.github.io`**
+2. 使用`tortoiseGit` clone该仓库，如果直接`add + commit + push`会出现分支不同问题，`tortoiseGit`默认推送`master`分支
+3. `clone`成功后自动进入主分支
+4. `add + commit + push`推送到远端，这里**需要在`github setting`中生成一个临时Token，时限选择最长，git不支持使用用户名+密码方式push**
+5. `push`成功后使用actions功能部署，部署成功后生成网页URL，URL为`https://用户名.github.io/xxx`
+6. 之后的每次`commit`操作，**`actions`都会重新部署，实现热更新**
+7. 如果想更改网站根域名，需要在仓库下-`setting-Pages-GithubPages-Custom domain`中输入自定义域名
