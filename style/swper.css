@@ -1,0 +1,52 @@
+.swiper {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--normal-radius);
+    margin-bottom: 16px;
+}
+
+.hero-slider {
+    width: 100%;
+}
+
+.hs-item {
+    width: 100%;
+    height: 360px;
+    display: block;
+    object-fit: cover;
+}
+
+/* 轮播指示器 */
+.owl-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+
+}
+
+.owl-dot {
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    background: transparent !important;
+
+}
+
+/* 响应式轮播图高度 */
+
+@media (max-width: 991px) {
+    .hs-item {
+        height: 400px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hs-item {
+        height: 300px;
+    }
+}

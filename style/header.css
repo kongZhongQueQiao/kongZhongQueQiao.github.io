@@ -1,0 +1,464 @@
+/* 网站通用container */
+.container {
+    /* width: 95%; */
+    /* 不使用vw %等 直接使用绝对单位px复刻网站 */
+    max-width: 1630px;
+    padding: 16px;
+    min-width: none;
+    margin: 0 auto;
+}
+
+* {
+    background: var(--normal-background);
+    box-sizing: border-box;
+    color: var(--normal-font-color);
+}
+
+/* 通用遮罩层 */
+.common-fade {
+    position: relative;
+}
+.common-fade::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* xy移动自身的一半 */
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: var(--normal-radius);
+    background-color: rgba(255, 255, 255, .3);
+    opacity: 0;
+    transition: all linear .3s;
+}
+.common-fade:hover::after {
+    opacity: 1;
+}
+
+:root {
+    --normal-radius: 5px;
+    /* 默认字体 */
+    --meka-font-display-type: Object Sans, Helvetica, Arial, sans-serif;
+    /* header第二栏加粗字体 */
+    --meka-font-body-type: Noto Sans, Helvetica, Arial, sans-serif;
+    /* animation速度 */
+    --transition-speed: .3s;
+    /* 默认文字及iconfont大小 */
+    --normal-font-size: 16px;
+    --normal-iconfont-size: 12px;
+    /* 默认字体颜色 */
+    --normal-font-color: #fff;
+    /* header子元素默认padding */
+    --normal-padding: 15px 8px;
+    /* 默认背景色 */
+    --normal-background: #15171E;
+}
+
+/* #region heeder-zone-top */
+header.container {
+    /* 据轮播图边距 */
+    margin-bottom: 16px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    margin: 3px 0;
+    /* header上部通用字体 */
+    font-family: var(--meka-font-display-type) !important;
+}
+
+.header-bgc img {
+    width: 200px;
+    height: calc(112px / 2 + 10px);
+    cursor: pointer;
+}
+
+.page-header > i {
+    display: none;
+    font-size: var(--normal-font-size);
+}
+
+
+/* 分别设置右侧三部分 */
+.header-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    visibility: visible;
+    cursor: pointer;
+    transition: all linear .5s;
+}
+
+/* 右侧通用遮罩层 + 动画设置 */
+.header-right-items {
+    padding: var(--normal-padding);
+    font-size: var(--normal-font-size);
+    /* 子元素间距 */
+    margin-right: 15px;
+}
+
+/* 字体图标 */
+.header-right-items > span:nth-child(-n + 3):not(.header-right-items > span:nth-child(2)) {
+    padding-right: 10px;
+    font-family: 'iconfont';
+    font-size: var(--normal-iconfont-size);
+}
+
+.header-right-items > span:nth-child(3) {
+    padding-right: 0;
+}
+
+/* 账户hover下拉菜单 */
+.account {
+    position: relative;
+}
+
+/* 弹出层 */
+.account-pops {
+    position: absolute;
+    width: 300px;
+    /* 避免和小三角重叠 */
+    top: calc(100% + 10px);
+    padding: 8px;
+    right: 0;
+    margin: 0 auto;
+    background-color: #1A1C23;
+    /* opacity: 0; */
+    /* 转用display规避hover问题 */
+    display: none;
+    /* z-index大于下方的粘性定位 */
+    z-index: 2;
+}
+
+/* 弹出框上方小三角设置 */
+.account-pops::before {
+    content: '';
+    position: absolute;
+    /* 定位在弹出层右上 */
+    top: -10px;
+    right: 25px;
+    width: 0;
+    height: 0;
+    /* 边框法 */
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #313439;
+    opacity: 0;
+}
+
+/* 弹出层子元素设置 */
+.account-pops-btn {
+    /* 基于父元素宽度 响应式时只需要更改.account-pops */
+    width: 95%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background: #0074E0;
+    border-radius: var(--normal-radius);
+}
+
+.account:hover .account-pops,
+.account:hover .account-pops::before {
+    opacity: 1;
+    /* 使用opacity设置会引起hover到pop时也会触发弹出效果 转用animation + display实现效果 */
+    display: block;
+    animation: fadeIn var(--transition-speed) ease;
+}
+
+/* header弹出层动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    /* 或使用form - to 效果相同 */
+    0% {
+        opacity: 1;
+        transform: translateX(20px);
+    }
+
+    25% {
+        transform: translateX(15px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+/* #endregion header-zone-top */
+
+
+/* #region header-zone-bottom */
+.page-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--meka-font-body-type);
+    font-weight: bold;
+    gap: 10px;
+}
+
+.page-bottom > div {
+    background: #23252B;
+    height: 56px;
+    border-radius: var(--normal-radius);
+    display: flex;
+    justify-content: flex-start;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 暂时解决背景问题 */
+.page-bottom div:not(.game-pops):not(.game-pops-items):not(.game-pops-item-text) {
+    display: flex;
+    background: #23252B;
+    border-radius: var(--normal-radius);
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.page-bottom span {
+    background: #23252B;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+/* 分别设置子元素的flex-basis */
+.page-bottom > div:first-child {
+    flex-basis: 68%;
+}
+
+.page-bottom > div:nth-child(2) {
+    flex-basis: 22%;
+}
+
+/* hover效果 */
+.page-bottom > div:nth-child(2):hover {
+    background: #303237 !important;
+    color: #fff !important;
+}
+
+.page-bottom > div:last-child {
+    flex-basis: 9%;
+}
+
+/* 设置三个bar中的子项样式 */
+/* 左侧每一个子项div的padding */
+.page-bottom > div:first-child.page-bottom-leftBar > div {
+    /* 弹出层定位 */
+    position: relative;
+    padding: var(--normal-padding);
+    margin-right: 15px;
+}
+/* 第一个div的marginLeft */
+.page-bottom > div:first-child > div:first-child {
+    margin-left: 10px;
+}
+
+/* 每一项的hover+color变色 遮罩层fadeIn已经封装到.common-fade */
+.page-bottom > div > div:hover > span {
+    color: #fff;
+}
+
+/* 左侧bar的所有div */
+.page-bottom > div:first-child.page-bottom-leftBar > div > span:last-of-type {
+    /* 向左撑开10px */
+    padding-left: 10px;
+    font-weight: normal;
+    font-family: 'iconfont';
+    font-size: var(--normal-iconfont-size);
+}
+
+/* 同上栏的子菜单弹出方式 */
+.game-pops {
+    position: absolute;
+    width: 300px;
+    padding: 8px;
+    /* display: none; */
+    background-color: #1A1C23;
+    border: 1px solid #303237;
+    top: calc(100% + 10px);
+    /* 默认left 0 无需添加 添加会影响右侧bar的单独设置right0 */
+    /* 默认效果 */
+    display: none;
+    /* 鼠标事件 */
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* 创建10px的hover缓冲区 避免鼠标移动到弹出层时丢失hover */
+.game-pops::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    height: 10px;
+    width: 100%;
+}
+
+/* 弹出层子项 */
+.game-pops-items {
+    width: 95%;
+    height: 50px;
+    /* 继承父级背景色 */
+    background: inherit;
+    border-radius: var(--normal-radius);
+    display: flex;
+    margin: 0 auto;
+    justify-content: flex-start;
+    /* 子项间距 */
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    /* hover动画 */
+    transition: all ease-in-out .3s;
+}
+
+/* 子项的hover效果 */
+.game-pops-items:hover,
+.game-pops-items:hover > img {
+    background: #272930;
+}
+
+/* unset最后一项的margin */
+.game-pops > .game-pops-items:last-of-type {
+    margin-bottom: 0;
+}
+/* unset背景色 */
+.game-pops-item-text {
+    background: none !important;
+    display: flex;
+    flex-direction: column;
+    gap: 5px 0;
+
+}
+.game-pops-items > .game-pops-item-text > p {
+    color: rgba(255, 255, 255, 0.72);
+    background: none;
+}
+.game-pops-items > .game-pops-item-text > p:last-of-type {
+    font-size: 12px;
+    color: #888;
+}
+
+/* 动画 */
+.page-bottom > div:first-child.page-bottom-leftBar > div:hover .game-pops {
+    display: block;
+    animation: fadeIn var(--transition-speed) ease;
+}
+
+/* 中侧搜索框bar */
+.page-bottom-centerBar {
+    display: flex;
+    align-items: center;
+}
+
+.page-bottom-centerBar > label {
+    padding: 0 16px;
+    background: none;
+    font-family: 'iconfont';
+    font-size: 24px;
+}
+
+.page-bottom-centerBar > input[type = "text"] {
+    background: none;
+    display: block;
+    height: 50%;
+    outline: unset;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: bold;
+}
+
+/* input聚焦时显示取消icon */
+/* .page-bottom-centerBar > input[type = "text"]:focus::after {
+    content: 'X';
+    display: block;
+    background: none;
+    color: red;
+    font-size: 24px;
+    background: none;
+} */
+
+/* 右侧点数bar */
+.page-bottom-rightBar {
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.battlenet-point {
+    position: relative;
+    height: 100%;
+    /* width: 100%; */
+}
+
+.page-bottom > div:last-of-type.page-bottom-rightBar > div.battlenet-point:hover > .game-pops {
+    display: block;
+    /* 左栏中定位默认为left0 这里需要改成right */
+    /* 留出25px的边距 */
+    right: -25px;
+    animation: fadeIn var(--transition-speed) ease;
+}
+
+/* 弹出层子项样式 */
+.page-bottom-rightBar > .battlenet-point > .game-pops > .battlenet-topUp {
+    background: none !important;
+    width: 95%;
+    margin: 0 auto;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    display: none;
+}
+
+.page-bottom-rightBar > .battlenet-point > .game-pops > .battlenet-topUp > span {
+    background: none !important;
+}
+
+.page-bottom-rightBar > .battlenet-point > .game-pops > .battlenet-topUp > span:first-of-type {
+    padding-left: 10px;
+    font-family: 'iconfont';
+    font-size: var(--normal-iconfont-size);
+}
+
+
+/* 统一hover背景 */
+.page-bottom-rightBar,
+.page-bottom-rightBar > .battlenet-point,
+.page-bottom-rightBar > .battlenet-point > span {
+    transition: background ease-in-out .3s;
+}
+.page-bottom-rightBar:hover,
+.page-bottom-rightBar:hover > .battlenet-point,
+.page-bottom-rightBar:hover > .battlenet-point > span {
+    background: #303237 !important;
+}
+
+.page-bottom-rightBar > .battlenet-point > span:last-of-type {
+    padding-left: 10px;
+    font-family: 'iconfont';
+    font-size: var(--normal-iconfont-size);
+}
+
+/* #endregion header-zone-bottom */

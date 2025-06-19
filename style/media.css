@@ -1,0 +1,156 @@
+@media (max-width: 1199px) {
+    /* <=1199的设备 */
+
+    /* header-zone */
+    header.container {
+        /* 整个header粘性定位 */
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        z-index: 3;
+    }
+
+    /* header-zone 下栏 */
+    .page-bottom > div:first-of-type {
+        flex-basis: 85%;    
+    }
+
+    .page-bottom > div:nth-child(2).page-bottom-centerBar {
+        flex-basis: 5%;
+        justify-content: center !important;
+    }
+
+    .page-bottom > div:nth-child(2).page-bottom-centerBar > input[type = 'text'] {
+        display: none;
+    }
+
+    /* 右侧bar弹出层定位 */
+    .page-bottom > div:last-of-type.page-bottom-rightBar > div.battlenet-point:hover > .game-pops {
+        right: 0;
+    }
+
+    /* 展示区最外层padding */
+    .exhibition-list {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 991px) {
+    /* <=991的设备 */
+    /* header-zone 上栏 */
+    header.container {
+        /* <991时 整个header粘性定位 */
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        z-index: 3;
+    }
+
+    /* 取消上栏margin */
+    div.page-header {
+        margin: 0;
+    }
+
+    /* 显示左右两侧图标 */
+    .page-header > i {
+        display: block;
+        font-size: var(--normal-font-size);
+        padding: 10px;
+        /* 使用和header-page相同的animation动画 */
+        animation: fadeIn var(--transition-speed) ease;
+    }
+
+    .page-header > i:hover::after {
+        opacity: 1;
+    }
+
+    /* 隐藏header第一栏右侧区域 */
+    .header-right {
+        display: none;
+    }
+
+    /* 更改图片大小 */
+    .header-bgc img {
+        width: 150px;
+        height: 48px;
+    }
+    /* header-zone 下栏 */
+    /* 隐藏1, 3 */
+    .page-bottom > div:first-of-type,
+    .page-bottom > div:last-of-type {
+        display: none !important;
+        flex-basis: 0;
+    }
+
+    .page-bottom > div:nth-child(2).page-bottom-centerBar {
+        flex-basis: 100%;
+        justify-content: flex-start !important;
+        animation: fadeIn var(--transition-speed) ease;
+        top: 0;
+        cursor: pointer;
+    }
+
+    .page-bottom > div:nth-child(2).page-bottom-centerBar > input[type = 'text'] {
+        display: block;
+    }
+
+    /* 展示区最外层padding */
+    .exhibition-list {
+        padding: 10px;
+    }
+
+    /* 优惠区更改主轴方向 */
+    .discount-body {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .discount-body > .discount-body-img {
+        width: 100%;
+        height: 300px;
+        flex-basis: auto;
+    }
+
+    .discount-body > .discount-details {
+        /* 高度由内容决定 */
+        flex-basis: auto;
+        width: 100%;
+        /* 高度过大 */
+    }
+
+    /* 取消右侧icon */
+    .discount-body > .discount-details > img {
+        display: none;
+    }
+
+    /* footer区上部排列 */
+    .footer-topBar {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer-topBar > .footer-topBar-text {
+        align-items: center;
+    }
+
+    .footer-topBar > .footer-topBar-text > .topBar-top {
+        align-items: center;
+    }
+
+    .footer-topBar > .footer-icon > img:last-of-type {
+        margin-right: 0;
+    }
+
+    /* 底部 */
+    .footer-bottomBar {
+        justify-content: center;
+    }
+    
+    .footer-bottomBar > ul {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    /* <=768的设备 */
+}
