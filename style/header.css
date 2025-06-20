@@ -309,6 +309,7 @@ header.container {
 }
 
 /* 创建10px的hover缓冲区 避免鼠标移动到弹出层时丢失hover */
+.account::before,
 .game-pops::before {
     content: "";
     position: absolute;
